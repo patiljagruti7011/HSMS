@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head><title>Home</title></h:head>
+<h:body>
+    <h2>Welcome #{loginBean.username}</h2>
+    <p>Your JWT Token:</p>
+    <h:outputText value="#{loginBean.token}" escape="false" />
+</h:body>
+</html>
