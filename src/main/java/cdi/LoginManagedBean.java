@@ -4,17 +4,9 @@
  */
 package cdi;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
-import jakarta.faces.context.FacesContext;
-import java.awt.RenderingHints.Key;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.Date;
-
-
 
 /**
  *
@@ -28,30 +20,28 @@ public class LoginManagedBean implements Serializable {
     private String password;
     private String token;
 
-    private static final Key SECRET_KEY = (Key) Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
-    public String login() {
-        if ("admin".equals(username) && "admin".equals(password)) {
-            this.token = generateToken(username);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("jwt", token);
-            return "home.xhtml?faces-redirect=true";
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                new jakarta.faces.application.FacesMessage("Invalid credentials"));
-            return null;
-        }
-    }
-    
-    private String generateToken(String user) {
-        return Jwts.builder()
-                .setSubject(user)
-                .setIssuer("jsf-jwt-app")
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // 1 hour
-                .signWith((java.security.Key) SECRET_KEY)
-                .compact();
-    }
-
+//    private static final Key SECRET_KEY = (Key) Keys.secretKeyFor(SignatureAlgorithm.HS256);
+//    public String login() {
+//        if ("admin".equals(username) && "admin".equals(password)) {
+//            this.token = generateToken(username);
+//            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("jwt", token);
+//            return "home.xhtml?faces-redirect=true";
+//        } else {
+//            FacesContext.getCurrentInstance().addMessage(null,
+//                new jakarta.faces.application.FacesMessage("Invalid credentials"));
+//            return null;
+//        }
+//    }
+//    
+//    private String generateToken(String user) {
+//        return Jwts.builder()
+//                .setSubject(user)
+//                .setIssuer("jsf-jwt-app")
+//                .setIssuedAt(new Date())
+//                .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // 1 hour
+//                .signWith((java.security.Key) SECRET_KEY)
+//                .compact();
+//    }
     public String getUsername() {
         return username;
     }
@@ -71,7 +61,5 @@ public class LoginManagedBean implements Serializable {
     public String getToken() {
         return token;
     }
-
-    
 
 }

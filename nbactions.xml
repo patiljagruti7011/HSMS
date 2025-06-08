@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-maven_clean_compile_pck_inst</actionName>
+            <displayName>maven_clean_compile_pck_inst</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>compile</goal>
+                <goal>package</goal>
+                <goal>install:install</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-clean_install</actionName>
+            <displayName>clean_install</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>-U</goal>
+            </goals>
+        </action>
+    </actions>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>
+            <ui:insert name="title">HSMS - Healthcare Scheduler</ui:insert>
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- PrimeFlex for layout -->
+        <!--<h:outputStylesheet library="primeflex" name="primeflex.min.css" />-->
+        <!--<h:outputStylesheet library="primefaces" name="primeflex/primeflex.css" />-->
+        <!--<h:outputStylesheet name="https://unpkg.com/primeflex@3.3.1/primeflex.min.css" library="" />-->
+        <link rel="stylesheet" href="https://unpkg.com/primeflex@3.3.1/primeflex.min.css"/>
+
+        <style>
+            .sidebar {
+                background-color: #2c3e50;
+                color: white;
+                padding: 1rem;
+            }
+
+            .sidebar .ui-menu {
+                border: none;
+                background: transparent;
+            }
+
+            .sidebar .ui-menuitem-text {
+                color: white;
+            }
+
+            .sidebar .ui-menuitem-icon {
+                color: white;
+            }
+
+            .header {
+                background-color: #007ad9;
+                color: white;
+                padding: 1rem;
+            }
+
+            .footer {
+                background-color: #495057;
+                color: white;
+                text-align: center;
+                padding: 0.5rem;
+            }
+            .col-2 {
+                float: left;
+                height: 100%;
+                margin-right: 10px;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <div class="grid grid-nogutter">
+                <!-- Header -->
+                <div class="col-12 header">
+                    <h2>Healthcare Scheduling Management System</h2>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <div class="col-12">
+                    <div class="col-2 sidebar">
+                        <p:menu>
+                            <p:submenu label="Dashboard" icon="pi pi-th-large">
+                                <p:menuitem value="Home" outcome="/admin/dashboard" icon="pi pi-home" />
+                            </p:submenu>
+
+                            <p:submenu label="Appointments" icon="pi pi-calendar">
+                                <p:menuitem value="Schedule" outcome="/admin/schedule" icon="pi pi-plus" />
+                                <p:menuitem value="View Appointments" outcome="/admin/appointments" icon="pi pi-list" />
+                            </p:submenu>
+
+                            <p:submenu label="Patients" icon="pi pi-users">
+                                <p:menuitem value="Patient Records" outcome="/admin/patients" icon="pi pi-file" />
+                                <p:menuitem value="Add Patient" outcome="/admin/addPatient" icon="pi pi-user-plus" />
+                            </p:submenu>
+
+                            <p:submenu label="User" icon="pi pi-users">
+                                <p:menuitem value="User List" outcome="/admin/userList" icon="pi pi-file" />
+                                <p:menuitem value="Add User" outcome="/admin/addUser" icon="pi pi-user-plus" />
+                            </p:submenu>
+
+                            <p:submenu label="Doctors" icon="pi pi-briefcase">
+                                <p:menuitem value="Doctors List" outcome="/admin/doctors" icon="pi pi-id-card" />
+                                <p:menuitem value="Availability" outcome="/admin/availability" icon="pi pi-clock" />
+                            </p:submenu>
+
+                            <p:submenu label="Settings" icon="pi pi-cog">
+                                <p:menuitem value="User Profile" outcome="/admin/profile" icon="pi pi-user" />
+                                <p:menuitem value="Logout" outcome="/login" icon="pi pi-sign-out" />
+                            </p:submenu>
+                        </p:menu>
+                    </div>
+
+                    <!-- Page Content -->
+                    <div class="col-10">
+                        <ui:insert name="content" />
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="col-12 footer">
+                    <p:outputLabel value="&#169; 2025 Softtech Solution Pvt. Ltd." />
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

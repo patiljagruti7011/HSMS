@@ -103,11 +103,11 @@ public class PatientManagedBean implements Serializable {
     public void init() {
         try {
             patientClient = new PatientClient();
-            patientList = patientClient.getPatientById(patientGenericType);
-            appointmentList = patientClient.getAppointmentById(appointmentGenericType);
-            availabilityList = patientClient.getAllAvailability(availabilityGenericType);
-            billingList = patientClient.getBillById(billGenericType);
-            doctorsList = patientClient.getAlldoctor(doctorGenericType);
+//            patientList = patientClient.getPatientById(patientGenericType);
+//            appointmentList = patientClient.getAppointmentById(appointmentGenericType);
+//            availabilityList = patientClient.getAllAvailability(availabilityGenericType);
+//            billingList = patientClient.getBillById(billGenericType);
+//            doctorsList = patientClient.getAlldoctor(doctorGenericType);
 
         } catch (ClientErrorException e) {
             e.printStackTrace();
@@ -118,47 +118,46 @@ public class PatientManagedBean implements Serializable {
 
     //======================== Appointment methods ==================================================
     //Add Appointment
-    public void addAppointment() {
-        try {
-            boolean appointmentExists = appointmentList.stream()
-                    .anyMatch(appointment -> appointment.getId().equals(id));
-
-            if (appointmentExists) {
-                System.out.println("Appointment already exists.");
-            }
-            AppointmentDetails newAppointment = new AppointmentDetails();
-            newAppointment.setId(id);
-            newAppointment.setAppointmentDate(appointmentDate);
-            newAppointment.setStatus(status);
-            newAppointment.setNotes(notes);
-            PatientDetails patient = patientClient.getPatientById(patientId);
-            newAppointment.setPatientId(patient);
-            newAppointment.setDoctorId(doctorId);
-
-            appointmentList = patientClient.getAppointmentById(appointmentGenericType);
-            id = 0;
-            appointmentDate = null;
-            status = "";
-            notes = "";
-            patientId = 0;
-            doctorId = null;
-        } catch (ClientErrorException e) {
-            System.out.println("Failed to add Appointment.");
-        }
-    }
-
-    //======================== Doctor methods ==================================================
-    //getDoctor
-    public Collection<DoctorsDetails> getAlldoctor() {
-        return doctorsList;
-    }
-
-    //======================== Availability methods ==================================================
-    //get Availability
-    public Collection<AvailabilityDetails> getAllAvailability() {
-        return availabilityList;
-    }
-
+//    public void addAppointment() {
+//        try {
+//            boolean appointmentExists = appointmentList.stream()
+//                    .anyMatch(appointment -> appointment.getId().equals(id));
+//
+//            if (appointmentExists) {
+//                System.out.println("Appointment already exists.");
+//            }
+//            AppointmentDetails newAppointment = new AppointmentDetails();
+//            newAppointment.setId(id);
+//            newAppointment.setAppointmentDate(appointmentDate);
+//            newAppointment.setStatus(status);
+//            newAppointment.setNotes(notes);
+//            PatientDetails patient = patientClient.getPatientById(patientId);
+//            newAppointment.setPatientId(patient);
+//            newAppointment.setDoctorId(doctorId);
+//
+//            appointmentList = patientClient.getAppointmentById(appointmentGenericType);
+//            id = 0;
+//            appointmentDate = null;
+//            status = "";
+//            notes = "";
+//            patientId = 0;
+//            doctorId = null;
+//        } catch (ClientErrorException e) {
+//            System.out.println("Failed to add Appointment.");
+//        }
+//    }
+//
+//    //======================== Doctor methods ==================================================
+//    //getDoctor
+//    public Collection<DoctorsDetails> getAlldoctor() {
+//        return doctorsList;
+//    }
+//
+//    //======================== Availability methods ==================================================
+//    //get Availability
+//    public Collection<AvailabilityDetails> getAllAvailability() {
+//        return availabilityList;
+//    }
     /**
      * Creates a new instance of PatientManagedBean
      */

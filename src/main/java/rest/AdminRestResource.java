@@ -17,8 +17,6 @@ import entity.VisitDetails;
 import java.util.Collection;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
@@ -40,22 +38,49 @@ import javax.ws.rs.core.Response;
 @RequestScoped
 public class AdminRestResource {
 
-    @EJB 
+    @EJB
     AdminejbBeanLocal aebl;
-    
-    @Context
-    private UriInfo context;
 
+    /**
+     * Creates a new instance of AdminRestResource
+     */
+    public AdminRestResource() {
+    }
+
+    /**
+     * Retrieves representation of an instance of rest.AdminRestResource
+     *
+     * @return an instance of java.lang.String
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getJson() {
+        //TODO return proper representation object
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * PUT method for updating or creating an instance of AdminRestResource
+     *
+     * @param content representation for the resource
+     */
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void putJson(String content) {
+    }
+//    @Context
+//    private UriInfo context;
     //----------------------------------------RoleMaster------------------------------------------
+
     @GET
     @Path("getAllRole")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<RoleMaster> getAllRole() {
         return aebl.getAllRole();
     }
-    
+
     @GET
-    @Path("getRoleById")
+    @Path("getRoleById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRoleById(@PathParam("id") int id) {
         RoleMaster role = aebl.getRoleById(id);
@@ -70,12 +95,12 @@ public class AdminRestResource {
     @POST
     @Path("addRole")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addRole(int id, String username, String password, String role, int pid, int did) {
-        aebl.addRole(id,username,password,role,pid,did);
+    public void addRole(RoleMaster roleMaster) {
+        aebl.addRole(roleMaster);
     }
 
     @DELETE
-    @Path("deleteRole")
+    @Path("deleteRole/{id}")
     public Response deleteRole(@PathParam("id") int id) {
         RoleMaster role = aebl.getRoleById(id);
         if (role != null) {
@@ -85,17 +110,14 @@ public class AdminRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Role not found").build();
         }
     }
-    
+
     //----------------------------------------Appointment------------------------------------------
-    
     @GET
     @Path("getAllAppointment")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<AppointmentDetails> getAllAppointment() {
         return aebl.getAllAppointment();
     }
-
-    
 
     //----------------------------------------Doctor------------------------------------------
     @GET
@@ -104,9 +126,9 @@ public class AdminRestResource {
     public Collection<DoctorsDetails> getAlldoctor() {
         return aebl.getAlldoctor();
     }
-    
+
     @GET
-    @Path("getDoctorById")
+    @Path("getDoctorById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getDoctorById(@PathParam("id") int id) {
         DoctorsDetails doctor = aebl.getDoctorById(id);
@@ -119,14 +141,19 @@ public class AdminRestResource {
     }
 
     @POST
-    @Path("addDoctor")
+    @Path("addDoctor/{id}/{fname}/{lname}/{qualification}/{wh}/{cno}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addDoctor(int id, String fname, String lname, String Qualification, int wh, int cno) {
-        aebl.addDoctor(id,fname,lname,Qualification,wh,cno);
+    public void addDoctor(@PathParam("id") int id,
+            @PathParam("fname") String fname,
+            @PathParam("lname") String lname,
+            @PathParam("qualification") String qualification,
+            @PathParam("wh") int wh,
+            @PathParam("cno") int cno) {
+        aebl.addDoctor(id, fname, lname, qualification, wh, cno);
     }
 
     @DELETE
-    @Path("deleteDoctor")
+    @Path("deleteDoctor/{id}")
     public Response deleteDoctor(@PathParam("id") int id) {
         DoctorsDetails doctor = aebl.getDoctorById(id);
         if (doctor != null) {
@@ -144,9 +171,9 @@ public class AdminRestResource {
     public Collection<Receptionist> getAllReceptionist() {
         return aebl.getAllReceptionist();
     }
-    
+
     @GET
-    @Path("getReceptionistById")
+    @Path("getReceptionistById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getReceptionistById(@PathParam("id") int id) {
         Receptionist receptionist = aebl.getReceptionistById(id);
@@ -159,14 +186,20 @@ public class AdminRestResource {
     }
 
     @POST
-    @Path("addReceptionist")
+    @Path("addReceptionist/{id}/{fname}/{lname}/{joining}/{quali}/{cno}/{gender}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addReceptionist(int id, String fname, String lname, Date joining, String qauli, String cno, String gender) {
-        aebl.addReceptionist(id,fname,lname,joining,qauli,cno,gender);
+    public void addReceptionist(@PathParam("id") int id,
+            @PathParam("fname") String fname,
+            @PathParam("lname") String lname,
+            @PathParam("joining") Date joining,
+            @PathParam("quali") String qauli,
+            @PathParam("cno") String cno,
+            @PathParam("gender") String gender) {
+        aebl.addReceptionist(id, fname, lname, joining, qauli, cno, gender);
     }
 
     @DELETE
-    @Path("deleteReceptionist")
+    @Path("deleteReceptionist/{id}")
     public Response deleteReceptionist(@PathParam("id") int id) {
         Receptionist receptionist = aebl.getReceptionistById(id);
         if (receptionist != null) {
@@ -176,7 +209,7 @@ public class AdminRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Receptionist not found").build();
         }
     }
-    
+
     //----------------------------------------Patient------------------------------------------
     @GET
     @Path("getAllPatient")
@@ -184,7 +217,6 @@ public class AdminRestResource {
     public Collection<PatientDetails> getAllPatient() {
         return aebl.getAllPatient();
     }
-
 
     //----------------------------------------Availability------------------------------------------
     @GET
@@ -195,7 +227,7 @@ public class AdminRestResource {
     }
 
     @GET
-    @Path("getAvailabilityById")
+    @Path("getAvailabilityById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAvailabilityById(@PathParam("id") int id) {
         AvailabilityDetails availability = aebl.getAvailabilityById(id);
@@ -206,6 +238,7 @@ public class AdminRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Availability not found").build();
         }
     }
+
     //----------------------------------------Bill------------------------------------------
     @GET
     @Path("getAllBill")
@@ -214,9 +247,8 @@ public class AdminRestResource {
         return aebl.getAllBill();
     }
 
-    
     @GET
-    @Path("getBillById")
+    @Path("getBillById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBillById(@PathParam("id") int id) {
         BillingDetails bill = aebl.getBillById(id);
@@ -227,7 +259,7 @@ public class AdminRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Bill not found").build();
         }
     }
-    
+
     //----------------------------------------SpecialityMaster------------------------------------------
     @GET
     @Path("getAllSpeciality")
@@ -236,7 +268,6 @@ public class AdminRestResource {
         return aebl.getAllSpeciality();
     }
 
-   
     //----------------------------------------VisitDetails------------------------------------------
     @GET
     @Path("getAllVisit")
@@ -245,29 +276,4 @@ public class AdminRestResource {
         return aebl.getAllVisit();
     }
 
-    /**
-     * Creates a new instance of AdminRestResource
-     */
-    public AdminRestResource() {
-    }
-
-    /**
-     * Retrieves representation of an instance of rest.AdminRestResource
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * PUT method for updating or creating an instance of AdminRestResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
 }

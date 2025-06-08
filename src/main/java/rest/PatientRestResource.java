@@ -12,7 +12,6 @@ import entity.BillingDetails;
 import entity.DoctorsDetails;
 import entity.PatientDetails;
 import java.util.Collection;
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -24,6 +23,7 @@ import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -45,15 +45,15 @@ public class PatientRestResource {
     @Context
     private UriInfo context;
 
-    @POST
-    @Path("addAppointment")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void addAppointment(int id, Date apDate, String status, String notes, PatientDetails pid, DoctorsDetails did) {
-        recbl.addAppointment(id, apDate, status, notes, pid, did);
-    }
+//    @POST
+//    @Path("addAppointment")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void addAppointment(int id, Date apDate, String status, String notes, PatientDetails pid, DoctorsDetails did) {
+//        recbl.addAppointment(id, apDate, status, notes, pid, did);
+//    }
 
     @GET
-    @Path("getAppointmentById")
+    @Path("getAppointmentById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAppointmentById(@PathParam("id") int id) {
         AppointmentDetails appointment = pbl.getAppointmentById(id);
@@ -82,7 +82,7 @@ public class PatientRestResource {
     }
 
     @GET
-    @Path("getAvailabilityById")
+    @Path("getAvailabilityById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAvailabilityById(@PathParam("id") int id) {
         AvailabilityDetails availability = pbl.getAvailabilityById(id);
@@ -96,7 +96,7 @@ public class PatientRestResource {
 
     //----------------------------------------Bill------------------------------------------
     @GET
-    @Path("getBillById")
+    @Path("getBillById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBillById(@PathParam("id") int id) {
         BillingDetails bill = pbl.getBillById(id);
@@ -107,10 +107,10 @@ public class PatientRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Bill not found").build();
         }
     }
-    
+
     //----------------------------------------Patient------------------------------------------
     @GET
-    @Path("getPatientById")
+    @Path("getPatientById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPatientById(@PathParam("id") int id) {
         PatientDetails patient = pbl.getPatientById(id);
@@ -125,5 +125,11 @@ public class PatientRestResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
+    }
+
+    private static class DoctorDetails {
+
+        public DoctorDetails() {
+        }
     }
 }

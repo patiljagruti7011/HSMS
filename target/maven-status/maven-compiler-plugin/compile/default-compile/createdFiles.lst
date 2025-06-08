@@ -1,5 +1,6 @@
 cdi\DoctorManagedBean$7.class
 entity\PatientDetails.class
+rest\AppConfig.class
 cdi\PatientManagedBean$1.class
 cdi\ReceptionistManagedBean$1.class
 cdi\ReceptionistManagedBean$4.class
@@ -35,6 +36,7 @@ ejb\DoctorejbBeanLocal.class
 cdi\ReceptionistManagedBean$6.class
 client\ReceptionistClient.class
 com\mycompany\hsms\JakartaRestConfiguration.class
+cdi\MenuBean.class
 cdi\AdminManagedBean$2.class
 cdi\ReceptionistManagedBean.class
 cdi\PatientManagedBean$3.class
@@ -46,12 +48,12 @@ entity\RoleMaster.class
 cdi\DoctorManagedBean$5.class
 cdi\AdminManagedBean$9.class
 cdi\ReceptionistManagedBean$2.class
-.netbeans_automatic_build
 entity\AppointmentDetails.class
 cdi\PatientManagedBean.class
 ejb\DoctorejbBean.class
 client\PatientClient.class
 cdi\AdminManagedBean$3.class
+rest\PatientRestResource$DoctorDetails.class
 cdi\DoctorManagedBean$6.class
 client\DoctorClient.class
 com\mycompany\hsms\resources\JakartaEE8Resource.class

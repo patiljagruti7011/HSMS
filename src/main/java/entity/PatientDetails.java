@@ -39,48 +39,44 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "PatientDetails.findByContactNumber", query = "SELECT p FROM PatientDetails p WHERE p.contactNumber = :contactNumber")})
 public class PatientDetails implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "first_name")
+    private String firstName;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "last_name")
+    private String lastName;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "dob")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
+    @Column(name = "gender")
+    private String gender;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "contact_number")
+    private int contactNumber;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "first_name")
-    private String firstName;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "last_name")
-    private String lastName;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "dob")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 6)
-    @Column(name = "gender")
-    private String gender;
-    
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "contact_number")
-    private int contactNumber;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientId")
     private Collection<AppointmentDetails> appointmentDetailsCollection;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientId")
     private Collection<BillingDetails> billingDetailsCollection;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientId")
     private Collection<VisitDetails> visitDetailsCollection;
 
@@ -196,5 +192,5 @@ public class PatientDetails implements Serializable {
     public String toString() {
         return "entity.PatientDetails[ id=" + id + " ]";
     }
-    
+
 }

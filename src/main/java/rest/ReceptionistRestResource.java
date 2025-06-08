@@ -38,20 +38,19 @@ public class ReceptionistRestResource {
 
     @EJB
     ReceptionistejbBeanLocal rbl;
-    
+
     @Context
     private UriInfo context;
 
-   
     @GET
     @Path("getAllAppointment")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<AppointmentDetails> getAllAppointment() {
         return rbl.getAllAppointment();
     }
-    
+
     @GET
-    @Path("getAppointmentById")
+    @Path("getAppointmentById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAppointmentById(@PathParam("id") int id) {
         AppointmentDetails appointment = rbl.getAppointmentById(id);
@@ -63,15 +62,20 @@ public class ReceptionistRestResource {
         }
     }
 
-    @POST
-    @Path("addAppointment")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void addAppointment(int id, Date apDate, String status, String notes, PatientDetails pid, DoctorsDetails did) {
-        rbl.addAppointment(id,apDate,status,notes,pid,did);
-    }
+//    @POST
+//    @Path("addAppointment/{id}/{apDate}/{status}/{notes}/{pid}/{did}")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void addAppointment(@PathParam("id") int id,
+//            @PathParam("apDate") Date apDate,
+//            @PathParam("status") String status,
+//            @PathParam("notes") String notes,
+//            @PathParam("pid") PatientDetails pid,
+//            @PathParam("did") DoctorsDetails did) {
+//        rbl.addAppointment(id, apDate, status, notes, pid, did);
+//    }
 
     @DELETE
-    @Path("deleteAppointment")
+    @Path("deleteAppointment/{id}")
     public Response deleteAppointment(@PathParam("id") int id) {
         AppointmentDetails appointment = rbl.getAppointmentById(id);
         if (appointment != null) {
@@ -90,7 +94,6 @@ public class ReceptionistRestResource {
         return rbl.getAlldoctor();
     }
 
-   
     //----------------------------------------Patient------------------------------------------
     @GET
     @Path("getAllPatient")
@@ -98,9 +101,9 @@ public class ReceptionistRestResource {
     public Collection<PatientDetails> getAllPatient() {
         return rbl.getAllPatient();
     }
-    
+
     @GET
-    @Path("getPatientById")
+    @Path("getPatientById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPatientById(@PathParam("id") int id) {
         PatientDetails patient = rbl.getPatientById(id);
@@ -112,16 +115,20 @@ public class ReceptionistRestResource {
         }
     }
 
-
     @POST
-    @Path("addPatient")
+    @Path("addPatient/{id}/{firstName}/{lastName}/{dob}/{gender}/{contactNumber}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addPatient(Integer id, String firstName, String lastName, Date dob, String gender, int contactNumber) {
-        rbl.addPatient(id,firstName,lastName,dob,gender,contactNumber);
+    public void addPatient(@PathParam("id") Integer id,
+            @PathParam("firstName") String firstName,
+            @PathParam("lastName") String lastName,
+            @PathParam("dob") Date dob,
+            @PathParam("gender") String gender,
+            @PathParam("contactNumber") int contactNumber) {
+        rbl.addPatient(id, firstName, lastName, dob, gender, contactNumber);
     }
 
     @DELETE
-    @Path("deletePatient")
+    @Path("deletePatient/{id}")
     public Response deletePatient(@PathParam("id") int id) {
         PatientDetails patient = rbl.getPatientById(id);
         if (patient != null) {
@@ -131,7 +138,7 @@ public class ReceptionistRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Patient not found").build();
         }
     }
-    
+
     //----------------------------------------Availability------------------------------------------
     @GET
     @Path("getAllAvailability")
@@ -141,7 +148,7 @@ public class ReceptionistRestResource {
     }
 
     @GET
-    @Path("getAvailabilityById")
+    @Path("getAvailabilityById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAvailabilityById(@PathParam("id") int id) {
         AvailabilityDetails availability = rbl.getAvailabilityById(id);
@@ -152,7 +159,7 @@ public class ReceptionistRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Availability not found").build();
         }
     }
-  
+
     //----------------------------------------Bill------------------------------------------
     @GET
     @Path("getAllBill")
@@ -160,9 +167,9 @@ public class ReceptionistRestResource {
     public Collection<BillingDetails> getAllBill() {
         return rbl.getAllBill();
     }
-    
+
     @GET
-    @Path("getBillById")
+    @Path("getBillById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBillById(@PathParam("id") int id) {
         BillingDetails bill = rbl.getBillById(id);
@@ -174,16 +181,18 @@ public class ReceptionistRestResource {
         }
     }
 
-
     @POST
-    @Path("addBill")
+    @Path("addBill/{id}/{billAmount}/{billingDate}/{paymentStatus}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addBill(Integer id, double billAmount, Date billingDate, String paymentStatus) {
-        rbl.addBill(id,billAmount,billingDate,paymentStatus);
+    public void addBill(@PathParam("id") Integer id,
+            @PathParam("billAmount") double billAmount,
+            @PathParam("billingDate") Date billingDate,
+            @PathParam("paymentStatus") String paymentStatus) {
+        rbl.addBill(id, billAmount, billingDate, paymentStatus);
     }
 
     @DELETE
-    @Path("deleteBill")
+    @Path("deleteBill/{id}")
     public Response deleteBill(@PathParam("id") int id) {
         BillingDetails bill = rbl.getBillById(id);
         if (bill != null) {
@@ -201,9 +210,9 @@ public class ReceptionistRestResource {
     public Collection<VisitDetails> getAllVisit() {
         return rbl.getAllVisit();
     }
-    
+
     @GET
-    @Path("getvisitById")
+    @Path("getvisitById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVisitById(@PathParam("id") int id) {
         VisitDetails visit = rbl.getvisitById(id);
@@ -215,16 +224,17 @@ public class ReceptionistRestResource {
         }
     }
 
-
     @POST
-    @Path("addVisit")
+    @Path("addVisit/{id}/{visitDate}/{visitCharge}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addVisit(Integer id, Date visitDate, double visitCharge) {
-        rbl.addVisit(id,visitDate,visitCharge);
+    public void addVisit(@PathParam("id") Integer id,
+            @PathParam("visitDate") Date visitDate,
+            @PathParam("visitCharge") double visitCharge) {
+        rbl.addVisit(id, visitDate, visitCharge);
     }
 
     @DELETE
-    @Path("deleteVisit")
+    @Path("deleteVisit/{id}")
     public Response deleteVisit(@PathParam("id") int id) {
         VisitDetails visit = rbl.getvisitById(id);
         if (visit != null) {
@@ -235,6 +245,4 @@ public class ReceptionistRestResource {
         }
     }
 
-
-    
 }

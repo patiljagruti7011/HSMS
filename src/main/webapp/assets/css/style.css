@@ -1,0 +1,41 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 07-Jun-2025, 12:23:51 PM
+    Author     : Dell
+*/
+body .ui-panel .ui-panel-titlebar {
+    background:white;
+}
+.layout-wrapper {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.topbar {
+    background-color: #4099ff;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
+}

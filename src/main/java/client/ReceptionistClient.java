@@ -35,112 +35,111 @@ public class ReceptionistClient implements Serializable {
         webTarget = client.target(BASE_URI).path("receptionistRest");
     }
 
-    public <T> T getAlldoctor(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAlldoctor");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getPatientById(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getPatientById");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getAllPatient(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAllPatient");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void addAppointment(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addAppointment").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public Response deletePatient(int pid) throws ClientErrorException {
-        return webTarget.path("deletePatient/{id}")
-                .resolveTemplate("id", pid)
-                .request()
-                .delete();
-    }
-
-    public <T> T getAllVisit(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAllVisit");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getVisitById(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getvisitById");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getAppointmentById(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAppointmentById");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void addBill(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addBill").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T getAllAppointment(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAllAppointment");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getAllBill(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAllBill");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void addPatient(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addPatient").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T getBillById(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getBillById");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public Response deleteBill() throws ClientErrorException {
-        return webTarget.path("deleteBill").request().delete(Response.class);
-    }
-
-    public Response deleteAppointment(int id) throws ClientErrorException {
-        return webTarget.path("deleteAppointment/{id}")
-                .resolveTemplate("id", id)
-                .request()
-                .delete();
-    }
-
-    public void addVisit(Object requestEntity) throws ClientErrorException {
-        webTarget.path("addVisit").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T getAvailabilityById(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAvailabilityById");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getAllAvailability(GenericType<T> responseType) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("getAllAvailability");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public Response deleteVisit() throws ClientErrorException {
-        return webTarget.path("deleteVisit").request().delete(Response.class);
-    }
-
     public void close() {
         client.close();
     }
 
+//    public <T> T getAlldoctor(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAlldoctor");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public <T> T getPatientById(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getPatientById");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public <T> T getAllPatient(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAllPatient");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public void addAppointment(Object requestEntity) throws ClientErrorException {
+//        webTarget.path("addAppointment").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+//    }
+//
+//    public Response deletePatient(int pid) throws ClientErrorException {
+//        return webTarget.path("deletePatient/{id}")
+//                .resolveTemplate("id", pid)
+//                .request()
+//                .delete();
+//    }
+//
+//    public <T> T getAllVisit(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAllVisit");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public <T> T getVisitById(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getvisitById");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public <T> T getAppointmentById(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAppointmentById");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public void addBill(Object requestEntity) throws ClientErrorException {
+//        webTarget.path("addBill").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+//    }
+//
+//    public <T> T getAllAppointment(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAllAppointment");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public <T> T getAllBill(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAllBill");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public void addPatient(Object requestEntity) throws ClientErrorException {
+//        webTarget.path("addPatient").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+//    }
+//
+//    public <T> T getBillById(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getBillById");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public Response deleteBill() throws ClientErrorException {
+//        return webTarget.path("deleteBill").request().delete(Response.class);
+//    }
+//
+//    public Response deleteAppointment(int id) throws ClientErrorException {
+//        return webTarget.path("deleteAppointment/{id}")
+//                .resolveTemplate("id", id)
+//                .request()
+//                .delete();
+//    }
+//
+//    public void addVisit(Object requestEntity) throws ClientErrorException {
+//        webTarget.path("addVisit").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+//    }
+//
+//    public <T> T getAvailabilityById(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAvailabilityById");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public <T> T getAllAvailability(GenericType<T> responseType) throws ClientErrorException {
+//        WebTarget resource = webTarget;
+//        resource = resource.path("getAllAvailability");
+//        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+//    }
+//
+//    public Response deleteVisit() throws ClientErrorException {
+//        return webTarget.path("deleteVisit").request().delete(Response.class);
+//    }
 }

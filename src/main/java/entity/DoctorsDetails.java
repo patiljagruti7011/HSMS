@@ -73,7 +73,7 @@ public class DoctorsDetails implements Serializable {
     @NotNull
     @Column(name = "contact_number")
     private int contactNumber;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctorId")
     private Collection<AppointmentDetails> appointmentDetailsCollection;
     

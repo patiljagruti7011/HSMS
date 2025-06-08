@@ -40,7 +40,7 @@ public class DoctorRestResource {
 
     @EJB
     DoctorejbBeanLocal dbl;
-    
+
     @Context
     private UriInfo context;
 
@@ -51,7 +51,6 @@ public class DoctorRestResource {
         return dbl.getAllAppointment();
     }
 
-
     //----------------------------------------Doctor------------------------------------------
     @GET
     @Path("getAlldoctor")
@@ -61,7 +60,7 @@ public class DoctorRestResource {
     }
 
     @GET
-    @Path("getDoctorById")
+    @Path("getDoctorById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getDoctorById(@PathParam("id") int id) {
         DoctorsDetails doctor = dbl.getDoctorById(id);
@@ -72,6 +71,7 @@ public class DoctorRestResource {
             return Response.status(Response.Status.NOT_FOUND).entity("Doctor not found").build();
         }
     }
+
     //----------------------------------------Patient------------------------------------------
     @GET
     @Path("getAllPatient")
@@ -81,7 +81,7 @@ public class DoctorRestResource {
     }
 
     @GET
-    @Path("getPatientById")
+    @Path("getPatientById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPatientById(@PathParam("id") int id) {
         PatientDetails patient = dbl.getPatientById(id);
@@ -100,9 +100,9 @@ public class DoctorRestResource {
     public Collection<AvailabilityDetails> getAllAvailability() {
         return dbl.getAllAvailability();
     }
-    
+
     @GET
-    @Path("getAvailabilityById")
+    @Path("getAvailabilityById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAvailabilityById(@PathParam("id") int id) {
         AvailabilityDetails availability = dbl.getAvailabilityById(id);
@@ -114,16 +114,19 @@ public class DoctorRestResource {
         }
     }
 
-
-    @POST
-    @Path("addAvailability")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void addAvailability(int id, int dayofweek, Date stime, Date etime, DoctorsDetails did) {
-        dbl.addAvailability(id,dayofweek,stime,etime,did);
-    }
+//    @POST
+//    @Path("addAvailability/{id}/{dayofweek}/{stime}/{etime}/{did}")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void addAvailability(@PathParam("id") int id,
+//            @PathParam("dayofweek") int dayofweek,
+//            @PathParam("stime") Date stime,
+//            @PathParam("etime") Date etime,
+//            @PathParam("did") int did) {
+//        dbl.addAvailability(id, dayofweek, stime, etime, did);
+//    }
 
     @DELETE
-    @Path("deleteAvailability")
+    @Path("deleteAvailability/{id}")
     public Response deleteAvailability(@PathParam("id") int id) {
         AvailabilityDetails availability = dbl.getAvailabilityById(id);
         if (availability != null) {
@@ -141,9 +144,9 @@ public class DoctorRestResource {
     public Collection<ReportType> getAllReport() {
         return dbl.getAllReport();
     }
-    
+
     @GET
-    @Path("getReportById")
+    @Path("getReportById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getReportById(@PathParam("id") int id) {
         ReportType report = dbl.getReportById(id);
@@ -156,14 +159,14 @@ public class DoctorRestResource {
     }
 
     @POST
-    @Path("addReport")
+    @Path("addReport/{id}/{reportName}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addReport(Integer id, String reportName) {
-        dbl.addReport(id,reportName);
+    public void addReport(@PathParam("id") Integer id, @PathParam("reportName") String reportName) {
+        dbl.addReport(id, reportName);
     }
 
     @DELETE
-    @Path("deleteReport")
+    @Path("deleteReport/{id}")
     public Response deleteReport(@PathParam("id") int id) {
         ReportType report = dbl.getReportById(id);
         if (report != null) {
@@ -181,9 +184,9 @@ public class DoctorRestResource {
     public Collection<SpecialityMaster> getAllSpeciality() {
         return dbl.getAllSpeciality();
     }
-     
+
     @GET
-    @Path("getSpecialityById")
+    @Path("getSpecialityById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecialityById(@PathParam("id") int id) {
         SpecialityMaster Speciality = dbl.getSpecialityById(id);
@@ -196,14 +199,14 @@ public class DoctorRestResource {
     }
 
     @POST
-    @Path("addSpeciality")
+    @Path("addSpeciality/{id}/{speciality}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addSpeciality(Integer id, String speciality) {
-        dbl.addSpeciality(id,speciality);
+    public void addSpeciality(@PathParam("id") Integer id, @PathParam("speciality") String speciality) {
+        dbl.addSpeciality(id, speciality);
     }
 
     @DELETE
-    @Path("deleteSpeciality")
+    @Path("deleteSpeciality/{id}")
     public Response deleteSpeciality(@PathParam("id") int id) {
         SpecialityMaster Speciality = dbl.getSpecialityById(id);
         if (Speciality != null) {
@@ -222,9 +225,8 @@ public class DoctorRestResource {
         return dbl.getAllVisit();
     }
 
-   
     @GET
-    @Path("getvisitById")
+    @Path("getvisitById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVisitById(@PathParam("id") int id) {
         VisitDetails visit = dbl.getvisitById(id);
@@ -236,10 +238,9 @@ public class DoctorRestResource {
         }
     }
 
-
-    
     /**
      * PUT method for updating or creating an instance of DoctorRestResource
+     *
      * @param content representation for the resource
      */
     @PUT

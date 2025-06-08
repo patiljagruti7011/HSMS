@@ -32,6 +32,12 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "SpecialityMaster.findBySpeciality", query = "SELECT s FROM SpecialityMaster s WHERE s.speciality = :speciality")})
 public class SpecialityMaster implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "speciality")
+    private String speciality;
+
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -40,11 +46,6 @@ public class SpecialityMaster implements Serializable {
     @Column(name = "id")
     private Integer id;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "speciality")
-    private String speciality;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "specialtyId")
     private Collection<DoctorsDetails> doctorsDetailsCollection;
@@ -69,13 +70,6 @@ public class SpecialityMaster implements Serializable {
         this.id = id;
     }
 
-    public String getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
 
     public Collection<DoctorsDetails> getDoctorsDetailsCollection() {
         return doctorsDetailsCollection;
@@ -108,6 +102,14 @@ public class SpecialityMaster implements Serializable {
     @Override
     public String toString() {
         return "entity.SpecialityMaster[ id=" + id + " ]";
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
     
 }

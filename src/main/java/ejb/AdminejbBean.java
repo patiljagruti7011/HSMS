@@ -30,23 +30,15 @@ public class AdminejbBean implements AdminejbBeanLocal {
     private EntityManager em;
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
+
     @Override
     public Collection<RoleMaster> getAllRole() {
         return em.createNamedQuery("RoleMaster.findAll", RoleMaster.class).getResultList();
     }
 
     @Override
-    public void addRole(int id, String username, String password, String role, int pid, int did) {
-        RoleMaster r = new RoleMaster();
-        r.setId(id);
-        r.setUsername(username);
-        r.setPassword(password);
-        r.setRole(role);
-        r.setPatientId(pid);
-        r.setDoctorId(did);
-        
-        em.persist(r);
+    public void addRole(RoleMaster role) {
+        em.persist(role);
     }
 
     @Override
@@ -54,11 +46,11 @@ public class AdminejbBean implements AdminejbBeanLocal {
         RoleMaster rm = (RoleMaster) em.find(RoleMaster.class, id);
         em.remove(rm);
     }
-    
+
     @Override
     public RoleMaster getRoleById(Integer Id) {
         return em.createNamedQuery("RoleMaster.findById", RoleMaster.class)
-                .setParameter("Id", Id)
+                .setParameter("id", Id)
                 .getSingleResult();
     }
 
@@ -75,14 +67,14 @@ public class AdminejbBean implements AdminejbBeanLocal {
 
     @Override
     public void addDoctor(int id, String fname, String lname, String Qualification, int wh, int cno) {
-       DoctorsDetails d = new DoctorsDetails();
+        DoctorsDetails d = new DoctorsDetails();
         d.setId(id);
         d.setFirstName(fname);
         d.setLastName(lname);
         d.setQualification(Qualification);
         d.setWorkingHours(wh);
         d.setContactNumber(cno);
-        
+
         em.persist(d);
     }
 
@@ -91,7 +83,7 @@ public class AdminejbBean implements AdminejbBeanLocal {
         DoctorsDetails d = (DoctorsDetails) em.find(DoctorsDetails.class, id);
         em.remove(d);
     }
-    
+
     @Override
     public DoctorsDetails getDoctorById(Integer Id) {
         return em.createNamedQuery("DoctorsDetails.findById", DoctorsDetails.class)
@@ -108,7 +100,7 @@ public class AdminejbBean implements AdminejbBeanLocal {
     public Collection<AvailabilityDetails> getAllAvailability() {
         return em.createNamedQuery("AvailabilityDetails.findAll", AvailabilityDetails.class).getResultList();
     }
-   
+
     @Override
     public AvailabilityDetails getAvailabilityById(Integer Id) {
         return em.createNamedQuery("AvailabilityDetails.findById", AvailabilityDetails.class)
@@ -169,5 +161,4 @@ public class AdminejbBean implements AdminejbBeanLocal {
                 .getSingleResult();
     }
 
-   
 }

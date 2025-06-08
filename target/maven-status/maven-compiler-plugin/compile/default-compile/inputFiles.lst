@@ -8,6 +8,7 @@ C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\entity\VisitDetai
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\entity\Receptionist.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\rest\PatientRestResource.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\entity\BillingDetails.java
+C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\rest\AppConfig.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\rest\DoctorRestResource.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\client\DoctorClient.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\entity\ReportType.java
@@ -19,6 +20,7 @@ C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\cdi\PatientManage
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\ejb\ReceptionistejbBeanLocal.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\entity\MedicineDetails.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\rest\AdminRestResource.java
+C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\cdi\MenuBean.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\cdi\DoctorManagedBean.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\cdi\LoginManagedBean.java
 C:\Users\Dell\OneDrive\Desktop\Sem8_Project\HSMS\src\main\java\entity\SpecialityMaster.java

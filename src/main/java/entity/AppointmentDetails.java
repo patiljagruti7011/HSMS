@@ -38,36 +38,36 @@ import javax.validation.constraints.Size;
 public class AppointmentDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "appointment_date")
     @Temporal(TemporalType.DATE)
     private Date appointmentDate;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "status")
     private String status;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "notes")
     private String notes;
-    
+
     @JsonbTransient
     @JoinColumn(name = "patient_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PatientDetails patientId;
-    
+
     @JsonbTransient
     @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -134,7 +134,7 @@ public class AppointmentDetails implements Serializable {
     public void setDoctorId(DoctorsDetails doctorId) {
         this.doctorId = doctorId;
     }
-    
+
 
     @Override
     public int hashCode() {
@@ -160,5 +160,5 @@ public class AppointmentDetails implements Serializable {
     public String toString() {
         return "entity.AppointmentDetails[ id=" + id + " ]";
     }
-    
+
 }

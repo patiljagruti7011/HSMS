@@ -122,12 +122,12 @@ public class ReceptionistManagedBean implements Serializable {
     public void init() {
         try {
             receptionistClient = new ReceptionistClient();
-            appointmentList = receptionistClient.getAllAppointment(appointmentGenericType);
-            availabilityList = receptionistClient.getAllAvailability(availabilityGenericType);
-            billingList = receptionistClient.getAllBill(billGenericType);
-            doctorsList = receptionistClient.getAlldoctor(doctorGenericType);
-            patientList = receptionistClient.getAllPatient(patientGenericType);
-            visitList = receptionistClient.getAllVisit(visitGenericType);
+//            appointmentList = receptionistClient.getAllAppointment(appointmentGenericType);
+//            availabilityList = receptionistClient.getAllAvailability(availabilityGenericType);
+//            billingList = receptionistClient.getAllBill(billGenericType);
+//            doctorsList = receptionistClient.getAlldoctor(doctorGenericType);
+//            patientList = receptionistClient.getAllPatient(patientGenericType);
+//            visitList = receptionistClient.getAllVisit(visitGenericType);
 
         } catch (ClientErrorException e) {
             e.printStackTrace();
@@ -144,127 +144,127 @@ public class ReceptionistManagedBean implements Serializable {
 
     //======================== Appointment methods ==================================================
     //getAppointment
-    public Collection<AppointmentDetails> getAllAppointment() {
-        return appointmentList;
-    }
-
-    //Add Appointment
-    public void addAppointment() {
-        try {
-            boolean appointmentExists = appointmentList.stream()
-                    .anyMatch(appointment -> appointment.getId().equals(id));
-
-            if (appointmentExists) {
-                System.out.println("Appointment already exists.");
-            }
-            AppointmentDetails newAppointment = new AppointmentDetails();
-            newAppointment.setId(id);
-            newAppointment.setAppointmentDate(appointmentDate);
-            newAppointment.setStatus(status);
-            newAppointment.setNotes(notes);
-            newAppointment.setPatientId(appointmentDetails.getPatientId());
-            newAppointment.setDoctorId(appointmentDetails.getDoctorId());
-
-            appointmentList = receptionistClient.getAppointmentById(appointmentGenericType);
-            id = 0;
-            appointmentDate = null;
-            status = "";
-            notes = "";
-            patientId = 0;
-            doctorId = 0;
-        } catch (ClientErrorException e) {
-            System.out.println("Failed to add Appointment.");
-        }
-    }
-
-    //Delete Appointment
-    public void deleteAppointment(int id) {
-        receptionistClient.deleteAppointment(id);
-        appointmentList = receptionistClient.getAllAppointment(appointmentGenericType);
-    }
-
-    // Edit  Appointment
-    AppointmentDetails SelectedAppointment;
-
-    public void editAppointment(AppointmentDetails appointment) {
-        this.SelectedAppointment = appointment;
-        this.id = appointment.getId();
-        this.appointmentDate = appointment.getAppointmentDate();
-        this.status = appointment.getStatus();
-        this.notes = appointment.getNotes();
-        this.patientDetails = appointmentDetails.getPatientId();
-        this.doctorsDetails = appointment.getDoctorId();
-    }
-
-    //======================== Doctor methods ==================================================
-    //getDoctor
-    public Collection<DoctorsDetails> getAlldoctor() {
-        return doctorsList;
-    }
-
-    //======================== Patient methods ==================================================
-    //get Patient
-    public Collection<PatientDetails> getAllPatient() {
-        return patientList;
-    }
-
-    //Add Patient
-    public void addPatient() {
-        try {
-            boolean patientExists = patientList.stream()
-                    .anyMatch(patient -> patient.getFirstName().equalsIgnoreCase(fName));
-
-            if (patientExists) {
-                System.out.println("Patient already exists.");
-            }
-            PatientDetails newpatient = new PatientDetails();
-            newpatient.setId(pid);
-            newpatient.setFirstName(fName);
-            newpatient.setLastName(lName);
-            newpatient.setDob(dob);
-            newpatient.setGender(gender);
-            newpatient.setContactNumber(cont_Number);
-
-            patientList = receptionistClient.getAllPatient(patientGenericType);
-            id = 0;
-            fName = "";
-            lName = "";
-            dob = null;
-            gender = "";
-            cont_Number = 0;
-        } catch (ClientErrorException e) {
-            System.out.println("Failed to add Patient.");
-        }
-    }
-
-    //Delete Patient
-    public void deletePatient(int pid) {
-        receptionistClient.deletePatient(pid);
-        patientList = receptionistClient.getAllPatient(patientGenericType);
-    }
-
-    // Edit  Patient
-    PatientDetails SelectedPatient;
-
-    public void editPatient(PatientDetails patient) {
-        this.SelectedPatient = patient;
-        this.pid = patient.getId();
-        this.fName = patient.getFirstName();
-        this.lName = patient.getLastName();
-        this.dob = patient.getDob();
-        this.gender = patient.getGender();
-        this.cont_Number = patient.getContactNumber();
-    }
-
-    //======================== Availability methods ==================================================
-    //get Availability
-    public Collection<AvailabilityDetails> getAllAvailability() {
-        return availabilityList;
-    }
-
-    //======================== Bill methods ==================================================
-    //get Bill
-    public Collection<BillingDetails> getAllBill() {
-        return billingList;
-    }
+//    public Collection<AppointmentDetails> getAllAppointment() {
+//        return appointmentList;
+//    }
+//
+//    //Add Appointment
+//    public void addAppointment() {
+//        try {
+//            boolean appointmentExists = appointmentList.stream()
+//                    .anyMatch(appointment -> appointment.getId().equals(id));
+//
+//            if (appointmentExists) {
+//                System.out.println("Appointment already exists.");
+//            }
+//            AppointmentDetails newAppointment = new AppointmentDetails();
+//            newAppointment.setId(id);
+//            newAppointment.setAppointmentDate(appointmentDate);
+//            newAppointment.setStatus(status);
+//            newAppointment.setNotes(notes);
+//            newAppointment.setPatientId(appointmentDetails.getPatientId());
+//            newAppointment.setDoctorId(appointmentDetails.getDoctorId());
+//
+//            appointmentList = receptionistClient.getAppointmentById(appointmentGenericType);
+//            id = 0;
+//            appointmentDate = null;
+//            status = "";
+//            notes = "";
+//            patientId = 0;
+//            doctorId = 0;
+//        } catch (ClientErrorException e) {
+//            System.out.println("Failed to add Appointment.");
+//        }
+//    }
+//
+//    //Delete Appointment
+//    public void deleteAppointment(int id) {
+//        receptionistClient.deleteAppointment(id);
+//        appointmentList = receptionistClient.getAllAppointment(appointmentGenericType);
+//    }
+//
+//    // Edit  Appointment
+//    AppointmentDetails SelectedAppointment;
+//
+//    public void editAppointment(AppointmentDetails appointment) {
+//        this.SelectedAppointment = appointment;
+//        this.id = appointment.getId();
+//        this.appointmentDate = appointment.getAppointmentDate();
+//        this.status = appointment.getStatus();
+//        this.notes = appointment.getNotes();
+//        this.patientDetails = appointmentDetails.getPatientId();
+//        this.doctorsDetails = appointment.getDoctorId();
+//    }
+//
+//    //======================== Doctor methods ==================================================
+//    //getDoctor
+//    public Collection<DoctorsDetails> getAlldoctor() {
+//        return doctorsList;
+//    }
+//
+//    //======================== Patient methods ==================================================
+//    //get Patient
+//    public Collection<PatientDetails> getAllPatient() {
+//        return patientList;
+//    }
+//
+//    //Add Patient
+//    public void addPatient() {
+//        try {
+//            boolean patientExists = patientList.stream()
+//                    .anyMatch(patient -> patient.getFirstName().equalsIgnoreCase(fName));
+//
+//            if (patientExists) {
+//                System.out.println("Patient already exists.");
+//            }
+//            PatientDetails newpatient = new PatientDetails();
+//            newpatient.setId(pid);
+//            newpatient.setFirstName(fName);
+//            newpatient.setLastName(lName);
+//            newpatient.setDob(dob);
+//            newpatient.setGender(gender);
+//            newpatient.setContactNumber(cont_Number);
+//
+//            patientList = receptionistClient.getAllPatient(patientGenericType);
+//            id = 0;
+//            fName = "";
+//            lName = "";
+//            dob = null;
+//            gender = "";
+//            cont_Number = 0;
+//        } catch (ClientErrorException e) {
+//            System.out.println("Failed to add Patient.");
+//        }
+//    }
+//
+//    //Delete Patient
+//    public void deletePatient(int pid) {
+//        receptionistClient.deletePatient(pid);
+//        patientList = receptionistClient.getAllPatient(patientGenericType);
+//    }
+//
+//    // Edit  Patient
+//    PatientDetails SelectedPatient;
+//
+//    public void editPatient(PatientDetails patient) {
+//        this.SelectedPatient = patient;
+//        this.pid = patient.getId();
+//        this.fName = patient.getFirstName();
+//        this.lName = patient.getLastName();
+//        this.dob = patient.getDob();
+//        this.gender = patient.getGender();
+//        this.cont_Number = patient.getContactNumber();
+//    }
+//
+//    //======================== Availability methods ==================================================
+//    //get Availability
+//    public Collection<AvailabilityDetails> getAllAvailability() {
+//        return availabilityList;
+//    }
+//
+//    //======================== Bill methods ==================================================
+//    //get Bill
+//    public Collection<BillingDetails> getAllBill() {
+//        return billingList;
+//    }
 }

@@ -39,30 +39,30 @@ public class RoleMaster implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "password")
     private String password;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "role")
     private String role;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "patient_id")
     private int patientId;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "doctor_id")
@@ -156,5 +156,5 @@ public class RoleMaster implements Serializable {
     public String toString() {
         return "entity.RoleMaster[ id=" + id + " ]";
     }
-    
+
 }

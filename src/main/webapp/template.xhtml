@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title><ui:insert name="title">HSMS - Healthcare Scheduler</ui:insert></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet library="primeflex" name="primeflex.min.css" />
+
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <div class="grid grid-nogutter">
+                <!-- Header -->
+                <div class="col-12 bg-primary text-white p-3">
+                    <h2>Healthcare Scheduling Management System</h2>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <div class="col-2 bg-light p-3">
+                    <p:menu>
+                        <p:submenu label="Dashboard" icon="pi pi-th-large">
+                            <p:menuitem value="Home" outcome="/pages/dashboard" icon="pi pi-home"/>
+                        </p:submenu>
+
+                        <p:submenu label="Appointments" icon="pi pi-calendar">
+                            <p:menuitem value="Schedule" outcome="/pages/schedule" icon="pi pi-plus"/>
+                            <p:menuitem value="View Appointments" outcome="/pages/appointments" icon="pi pi-list"/>
+                        </p:submenu>
+
+                        <p:submenu label="Patients" icon="pi pi-users">
+                            <p:menuitem value="Patient Records" outcome="/pages/patients" icon="pi pi-file"/>
+                            <p:menuitem value="Add Patient" outcome="/pages/addPatient" icon="pi pi-user-plus"/>
+                        </p:submenu>
+
+                        <p:submenu label="Doctors" icon="pi pi-briefcase">
+                            <p:menuitem value="Doctors List" outcome="/pages/doctors" icon="pi pi-id-card"/>
+                            <p:menuitem value="Availability" outcome="/pages/availability" icon="pi pi-clock"/>
+                        </p:submenu>
+
+                        <p:submenu label="Settings" icon="pi pi-cog">
+                            <p:menuitem value="User Profile" outcome="/pages/profile" icon="pi pi-user"/>
+                            <p:menuitem value="Logout" outcome="/login" icon="pi pi-sign-out"/>
+                        </p:submenu>
+                    </p:menu>
+                </div>
+
+                <!-- Page Content -->
+                <div class="col-10 p-3">
+                    <ui:insert name="content" />
+                </div>
+
+                <!-- Footer -->
+                <div class="col-12 bg-secondary text-white p-2">
+                    <p:outputLabel value="&#169; 2025 MedSync Solutions Pvt. Ltd." style="padding-left:10px;" />
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

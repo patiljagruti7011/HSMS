@@ -31,7 +31,7 @@ import javax.ws.rs.core.GenericType;
 @SessionScoped
 public class DoctorManagedBean implements Serializable {
 
-//    @Inject    
+    @Inject
     private DoctorClient doctorClient;
     private Collection<AppointmentDetails> appointmentList;
     private Collection<AvailabilityDetails> availabilityList;
@@ -123,13 +123,13 @@ public class DoctorManagedBean implements Serializable {
     public void init() {
         try {
             doctorClient = new DoctorClient();
-            appointmentList = doctorClient.getAllAppointment(appointmentGenericType);
-            availabilityList = doctorClient.getAllAvailability(availabilityGenericType);
-            doctorsList = doctorClient.getAlldoctor(doctorGenericType);
-            patientList = doctorClient.getAllPatient(patientGenericType);
-            reportList = doctorClient.getAllReport(reportGenericType);
-            specialityList = doctorClient.getAllSpeciality(specialityGenericType);
-            visitList = doctorClient.getAllVisit(visitGenericType);
+//            appointmentList = doctorClient.getAllAppointment(appointmentGenericType);
+//            availabilityList = doctorClient.getAllAvailability(availabilityGenericType);
+//            doctorsList = doctorClient.getAlldoctor(doctorGenericType);
+//            patientList = doctorClient.getAllPatient(patientGenericType);
+//            reportList = doctorClient.getAllReport(reportGenericType);
+//            specialityList = doctorClient.getAllSpeciality(specialityGenericType);
+//            visitList = doctorClient.getAllVisit(visitGenericType);
 
         } catch (ClientErrorException e) {
             e.printStackTrace();
@@ -140,164 +140,164 @@ public class DoctorManagedBean implements Serializable {
 
     //======================== Appointment methods ==================================================
     //getAppointment
-    public Collection<AppointmentDetails> getAllAppointment() {
-        return appointmentList;
-    }
+//    public Collection<AppointmentDetails> getAllAppointment() {
+//        return appointmentList;
+//    }
 
     //======================== Doctor methods ==================================================
     //getDoctor
-    public Collection<DoctorsDetails> getAlldoctor() {
-        return doctorsList;
-    }
+//    public Collection<DoctorsDetails> getAlldoctor() {
+//        return doctorsList;
+//    }
 
     //======================== Patient methods ==================================================
     //get Patient
-    public Collection<PatientDetails> getAllPatient() {
-        return patientList;
-    }
+//    public Collection<PatientDetails> getAllPatient() {
+//        return patientList;
+//    }
 
     //======================== Availability methods ==================================================
     //get Availability
-    public Collection<AvailabilityDetails> getAllAvailability() {
-        return availabilityList;
-    }
+//    public Collection<AvailabilityDetails> getAllAvailability() {
+//        return availabilityList;
+//    }
 
     //Add Availability
-    public void addAvailability() {
-        try {
-            boolean availabilityExists = availabilityList.stream()
-                    .anyMatch(availability -> availability.getId().equals(aid));
-
-            if (availabilityExists) {
-                System.out.println("Availability name already exists.");
-            }
-            AvailabilityDetails newAvailability = new AvailabilityDetails();
-            newAvailability.setId(aid);
-            newAvailability.setDayOfWeek(0);
-            newAvailability.setStartTime(null);
-            newAvailability.setEndTime(null);
-            DoctorsDetails doctor = doctorClient.getDoctorById(doctorId);
-            newAvailability.setDoctorId(doctor);
-
-            availabilityList = doctorClient.getAllAvailability(availabilityGenericType);
-            aid = 0;
-            dayOfWeek = 0;
-            startTime = null;
-            endTime = null;
-            dId = 0;
-
-        } catch (ClientErrorException e) {
-            System.out.println("Failed to add Receptionist.");
-        }
-    }
+//    public void addAvailability() {
+//        try {
+//            boolean availabilityExists = availabilityList.stream()
+//                    .anyMatch(availability -> availability.getId().equals(aid));
+//
+//            if (availabilityExists) {
+//                System.out.println("Availability name already exists.");
+//            }
+//            AvailabilityDetails newAvailability = new AvailabilityDetails();
+//            newAvailability.setId(aid);
+//            newAvailability.setDayOfWeek(0);
+//            newAvailability.setStartTime(null);
+//            newAvailability.setEndTime(null);
+//            DoctorsDetails doctor = doctorClient.getDoctorById(doctorId);
+//            newAvailability.setDoctorId(doctor);
+//
+//            availabilityList = doctorClient.getAllAvailability(availabilityGenericType);
+//            aid = 0;
+//            dayOfWeek = 0;
+//            startTime = null;
+//            endTime = null;
+//            dId = 0;
+//
+//        } catch (ClientErrorException e) {
+//            System.out.println("Failed to add Receptionist.");
+//        }
+//    }
 
     //Delete Availability
-    public void deleteAvailability(int aid) {
-        doctorClient.deleteAvailability(aid);
-        availabilityList = doctorClient.getAllAvailability(availabilityGenericType);
-    }
+//    public void deleteAvailability(int aid) {
+//        doctorClient.deleteAvailability(aid);
+//        availabilityList = doctorClient.getAllAvailability(availabilityGenericType);
+//    }
 
     // Edit  Availability
-    AvailabilityDetails SelectedAvailability;
-
-    public void editAvailability(AvailabilityDetails availability) {
-        this.SelectedAvailability = availability;
-        this.aid = availability.getId();
-        this.dayOfWeek = availability.getDayOfWeek();
-        this.startTime = availability.getStartTime();
-        this.endTime = availability.getEndTime();
-        this.dId = availability.getDoctorId().getId();
-    }
+//    AvailabilityDetails SelectedAvailability;
+//
+//    public void editAvailability(AvailabilityDetails availability) {
+//        this.SelectedAvailability = availability;
+//        this.aid = availability.getId();
+//        this.dayOfWeek = availability.getDayOfWeek();
+//        this.startTime = availability.getStartTime();
+//        this.endTime = availability.getEndTime();
+//        this.dId = availability.getDoctorId().getId();
+//    }
 
     //======================== ReportType methods ==================================================
     //get ReportType
-    public Collection<ReportType> getAllReport() {
-        return reportList;
-    }
-
-    //Add ReportType
-    public void addReport() {
-        try {
-            boolean reportExists = reportList.stream()
-                    .anyMatch(report -> report.getId().equals(aid));
-
-            if (reportExists) {
-                System.out.println("Report name already exists.");
-            }
-            ReportType newReport = new ReportType();
-            newReport.setId(rid);
-            newReport.setReportName("");
-            reportList = doctorClient.getAllReport(reportGenericType);
-            rid = 0;
-            reportName = "";
-
-        } catch (ClientErrorException e) {
-            System.out.println("Failed to add Receptionist.");
-        }
-    }
+//    public Collection<ReportType> getAllReport() {
+//        return reportList;
+//    }
+//
+//    //Add ReportType
+//    public void addReport() {
+//        try {
+//            boolean reportExists = reportList.stream()
+//                    .anyMatch(report -> report.getId().equals(aid));
+//
+//            if (reportExists) {
+//                System.out.println("Report name already exists.");
+//            }
+//            ReportType newReport = new ReportType();
+//            newReport.setId(rid);
+//            newReport.setReportName("");
+//            reportList = doctorClient.getAllReport(reportGenericType);
+//            rid = 0;
+//            reportName = "";
+//
+//        } catch (ClientErrorException e) {
+//            System.out.println("Failed to add Receptionist.");
+//        }
+//    }
 
     //Delete ReportType
-    public void deleteReport(int rid) {
-        doctorClient.deleteReport(rid);
-        reportList = doctorClient.getAllReport(reportGenericType);
-    }
+//    public void deleteReport(int rid) {
+//        doctorClient.deleteReport(rid);
+//        reportList = doctorClient.getAllReport(reportGenericType);
+//    }
 
     // Edit  ReportType
-    ReportType SelectedReport;
-
-    public void editReport(ReportType report) {
-        this.SelectedReport = report;
-        this.rid = report.getId();
-        this.reportName = report.getReportName();
-    }
+//    ReportType SelectedReport;
+//
+//    public void editReport(ReportType report) {
+//        this.SelectedReport = report;
+//        this.rid = report.getId();
+//        this.reportName = report.getReportName();
+//    }
 
     //======================== SpecialityMaster methods ==================================================
     //get Speciality
-    public Collection<SpecialityMaster> getAllSpeciality() {
-        return specialityList;
-    }
-
-    //Add Speciality
-    public void addSpeciality() {
-        try {
-            boolean SpecialityExists = specialityList.stream()
-                    .anyMatch(Speciality -> Speciality.getId().equals(sid));
-
-            if (SpecialityExists) {
-                System.out.println("Speciality name already exists.");
-            }
-            SpecialityMaster newSpeciality = new SpecialityMaster();
-            newSpeciality.setId(sid);
-            newSpeciality.setSpeciality("");
-            specialityList = doctorClient.getAllSpeciality(specialityGenericType);
-            sid = 0;
-            speciality = "";
-
-        } catch (ClientErrorException e) {
-            System.out.println("Failed to add Speciality.");
-        }
-    }
+//    public Collection<SpecialityMaster> getAllSpeciality() {
+//        return specialityList;
+//    }
+//
+//    //Add Speciality
+//    public void addSpeciality() {
+//        try {
+//            boolean SpecialityExists = specialityList.stream()
+//                    .anyMatch(Speciality -> Speciality.getId().equals(sid));
+//
+//            if (SpecialityExists) {
+//                System.out.println("Speciality name already exists.");
+//            }
+//            SpecialityMaster newSpeciality = new SpecialityMaster();
+//            newSpeciality.setId(sid);
+//            newSpeciality.setSpeciality("");
+//            specialityList = doctorClient.getAllSpeciality(specialityGenericType);
+//            sid = 0;
+//            speciality = "";
+//
+//        } catch (ClientErrorException e) {
+//            System.out.println("Failed to add Speciality.");
+//        }
+//    }
 
     //Delete Speciality
-    public void deleteSpeciality(int sid) {
-        doctorClient.deleteSpeciality(sid);
-        specialityList = doctorClient.getAllSpeciality(specialityGenericType);
-    }
-
-    // Edit  Speciality
-    SpecialityMaster SelectedSpeciality;
-
-    public void editSpeciality(SpecialityMaster Speciality) {
-        this.SelectedSpeciality = Speciality;
-        this.sid = Speciality.getId();
-        this.speciality = Speciality.getSpeciality();
-    }
+//    public void deleteSpeciality(int sid) {
+//        doctorClient.deleteSpeciality(sid);
+//        specialityList = doctorClient.getAllSpeciality(specialityGenericType);
+//    }
+//
+//    // Edit  Speciality
+//    SpecialityMaster SelectedSpeciality;
+//
+//    public void editSpeciality(SpecialityMaster Speciality) {
+//        this.SelectedSpeciality = Speciality;
+//        this.sid = Speciality.getId();
+//        this.speciality = Speciality.getSpeciality();
+//    }
 
     //======================== Visit methods ==================================================
     //get Visit
-    public Collection<VisitDetails> getAllVisit() {
-        return visitList;
-    }
+//    public Collection<VisitDetails> getAllVisit() {
+//        return visitList;
+//    }
 
     /**
      * Creates a new instance of DoctorManagedBean

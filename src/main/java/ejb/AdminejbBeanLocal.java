@@ -23,16 +23,17 @@ import javax.ejb.Local;
  */
 @Local
 public interface AdminejbBeanLocal {
+
     public Collection<RoleMaster> getAllRole();
 
-    public void addRole(int id, String username, String password, String role, int pid, int did);
+    public void addRole(RoleMaster roleMaster);
 
     public void deleteRole(Integer id);
 
     public RoleMaster getRoleById(Integer Id);
-    
+
     public Collection<AppointmentDetails> getAllAppointment();
-    
+
     public Collection<DoctorsDetails> getAlldoctor();
 
     public void addDoctor(int id, String fname, String lname, String Qualification, int wh, int cno);
@@ -40,7 +41,7 @@ public interface AdminejbBeanLocal {
     public void deleteDoctor(Integer id);
 
     public DoctorsDetails getDoctorById(Integer Id);
-    
+
     public Collection<Receptionist> getAllReceptionist();
 
     public void addReceptionist(int id, String fname, String lname, Date joining, String qauli, String cno, String gender);
@@ -48,18 +49,18 @@ public interface AdminejbBeanLocal {
     public void deleteReceptionist(Integer id);
 
     public Receptionist getReceptionistById(Integer Id);
-    
+
     public Collection<PatientDetails> getAllPatient();
 
     public Collection<AvailabilityDetails> getAllAvailability();
-    
+
     public AvailabilityDetails getAvailabilityById(Integer Id);
-    
+
     public Collection<BillingDetails> getAllBill();
-    
+
     public BillingDetails getBillById(Integer Id);
-    
+
     public Collection<SpecialityMaster> getAllSpeciality();
-    
+
     public Collection<VisitDetails> getAllVisit();
 }
