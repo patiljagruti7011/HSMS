@@ -15,7 +15,6 @@ import entity.RoleMaster;
 import entity.SpecialityMaster;
 import entity.VisitDetails;
 import java.util.Collection;
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -141,15 +140,10 @@ public class AdminRestResource {
     }
 
     @POST
-    @Path("addDoctor/{id}/{fname}/{lname}/{qualification}/{wh}/{cno}")
+    @Path("addDoctor")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addDoctor(@PathParam("id") int id,
-            @PathParam("fname") String fname,
-            @PathParam("lname") String lname,
-            @PathParam("qualification") String qualification,
-            @PathParam("wh") int wh,
-            @PathParam("cno") int cno) {
-        aebl.addDoctor(id, fname, lname, qualification, wh, cno);
+    public void addDoctor(DoctorsDetails doctorsDetails) {
+        aebl.addDoctor(doctorsDetails);
     }
 
     @DELETE
@@ -186,16 +180,10 @@ public class AdminRestResource {
     }
 
     @POST
-    @Path("addReceptionist/{id}/{fname}/{lname}/{joining}/{quali}/{cno}/{gender}")
+    @Path("addReceptionist")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addReceptionist(@PathParam("id") int id,
-            @PathParam("fname") String fname,
-            @PathParam("lname") String lname,
-            @PathParam("joining") Date joining,
-            @PathParam("quali") String qauli,
-            @PathParam("cno") String cno,
-            @PathParam("gender") String gender) {
-        aebl.addReceptionist(id, fname, lname, joining, qauli, cno, gender);
+    public void addReceptionist(Receptionist receptionist) {
+        aebl.addReceptionist(receptionist);
     }
 
     @DELETE

@@ -66,15 +66,7 @@ public class AdminejbBean implements AdminejbBeanLocal {
     }
 
     @Override
-    public void addDoctor(int id, String fname, String lname, String Qualification, int wh, int cno) {
-        DoctorsDetails d = new DoctorsDetails();
-        d.setId(id);
-        d.setFirstName(fname);
-        d.setLastName(lname);
-        d.setQualification(Qualification);
-        d.setWorkingHours(wh);
-        d.setContactNumber(cno);
-
+    public void addDoctor(DoctorsDetails d) {
         em.persist(d);
     }
 
@@ -136,15 +128,7 @@ public class AdminejbBean implements AdminejbBeanLocal {
     }
 
     @Override
-    public void addReceptionist(int id, String fname, String lname, Date joining, String qauli, String cno, String gender) {
-        Receptionist r = new Receptionist();
-        r.setId(id);
-        r.setFirstName(fname);
-        r.setLastName(lname);
-        r.setJoiningDate(joining);
-        r.setQualification(qauli);
-        r.setContactNumber(cno);
-        r.setGender(gender);
+    public void addReceptionist(Receptionist r) {
         em.persist(r);
     }
 

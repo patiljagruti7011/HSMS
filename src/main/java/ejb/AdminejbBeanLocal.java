@@ -36,7 +36,7 @@ public interface AdminejbBeanLocal {
 
     public Collection<DoctorsDetails> getAlldoctor();
 
-    public void addDoctor(int id, String fname, String lname, String Qualification, int wh, int cno);
+    public void addDoctor(DoctorsDetails doctorsDetails);
 
     public void deleteDoctor(Integer id);
 
@@ -44,7 +44,7 @@ public interface AdminejbBeanLocal {
 
     public Collection<Receptionist> getAllReceptionist();
 
-    public void addReceptionist(int id, String fname, String lname, Date joining, String qauli, String cno, String gender);
+    public void addReceptionist(Receptionist receptionist);
 
     public void deleteReceptionist(Integer id);
 

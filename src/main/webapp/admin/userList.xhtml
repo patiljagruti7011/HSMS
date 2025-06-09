@@ -5,7 +5,7 @@
                 template="../index.xhtml">
 
     <ui:define name="title">
-        Dashboard - HSMS
+        HSMS - User List
     </ui:define>
 
     <ui:define name="content">
@@ -13,7 +13,7 @@
         <h:form id="roleMaster">
 
             <h2>User List</h2>
-            
+
             <p:dataTable value="#{adminManagedBean.allRole}" var="user" 
                          paginator="true" rows="10"  
                          rowKey="#{user.id}" >
